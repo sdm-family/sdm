@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>bleis-tift</authors>
+    <owners>bleis-tift</owners>
+    <licenseUrl>https://github.com/sdm-family/sdm/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/sdm-family/sdm</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>StructuredDocument</tags>
+  </metadata>
+</package>
