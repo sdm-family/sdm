@@ -6,8 +6,8 @@ type Component =
   | List of ListStyleGroup list * Items:Component list
   | Table of TableStyleGroup list * TableContents
 and TableContents =
-  | RowsTable of ColumnStyleGroup list * ColumnContents
-  | ColumnsTable of RowStyleGroup list * RowContents
+  | RowsTable of ColumnStyleGroup list * ColumnContents list
+  | ColumnsTable of RowStyleGroup list * RowContents list
 and ColumnContents = {
   Heading: TableHeading option
   Rows: (CellStyleGroup list * Component) list
@@ -18,5 +18,5 @@ and RowContents = {
 }
 and TableHeading = {
   StyleGroups: CellStyleGroup list
-  Text: Text
+  Content: Component
 }
