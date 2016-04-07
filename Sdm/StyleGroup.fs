@@ -20,6 +20,11 @@ type StyleGroup (name: string) as self =
   member this.IsContained(groups: StyleGroup seq) =
     groups |> Seq.contains this
 
+  member __.HasPrefix(prefix) =
+    name.StartsWith(prefix)
+
+  member internal __.Name = name
+
 type TextStyleGroup (name: string) = inherit StyleGroup(name)
 type ListStyleGroup (name: string) = inherit StyleGroup(name)
 type TableStyleGroup (name: string) = inherit StyleGroup(name)
@@ -35,3 +40,10 @@ module StyleGroup =
 module Patterns =
   let (|Contains|_|) x groups =
     if StyleGroup.contains x groups then Some () else None
+
+  let (|ContainsPrefix|_|) (prefix: string) groups =
+    let suffix (g: StyleGroup) =
+      g.Name.Substring(prefix.Length)
+    groups
+    |> Seq.tryFind (fun (g: StyleGroup) -> g.HasPrefix(prefix))
+    |> Option.map suffix
