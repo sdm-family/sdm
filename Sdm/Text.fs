@@ -22,3 +22,7 @@ module Text =
 
   let fromTextSegment segment =
     create [ segment ]
+
+  let map f text = text.Segments |> List.map f
+
+  let fold f seed text = text.Segments |> List.fold f seed
