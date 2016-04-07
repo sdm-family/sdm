@@ -17,9 +17,21 @@ type StyleGroup (name: string) as self =
     let typ = names.[name]
     typ.Name + "(" + name + ")"
 
+  member this.IsContained(groups: StyleGroup seq) =
+    groups |> Seq.contains this
+
 type TextStyleGroup (name: string) = inherit StyleGroup(name)
 type ListStyleGroup (name: string) = inherit StyleGroup(name)
 type TableStyleGroup (name: string) = inherit StyleGroup(name)
 type ColumnStyleGroup (name: string) = inherit StyleGroup(name)
 type RowStyleGroup (name: string) = inherit StyleGroup(name)
 type CellStyleGroup (name: string) = inherit StyleGroup(name)
+
+[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+module StyleGroup =
+  let contains x groups = groups |> Seq.contains x
+
+[<AutoOpen>]
+module Patterns =
+  let (|Contains|_|) x groups =
+    if StyleGroup.contains x groups then Some () else None
