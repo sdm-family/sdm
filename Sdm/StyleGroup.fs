@@ -13,6 +13,10 @@ type StyleGroup (name: string) as self =
     | false, _ ->
         names.Add(name, self.GetType())
 
+  override __.ToString() =
+    let typ = names.[name]
+    typ.Name + "(" + name + ")"
+
 type TextStyleGroup (name: string) = inherit StyleGroup(name)
 type ListStyleGroup (name: string) = inherit StyleGroup(name)
 type TableStyleGroup (name: string) = inherit StyleGroup(name)
